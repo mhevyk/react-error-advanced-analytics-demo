@@ -1,12 +1,24 @@
+import useAnalyticsEventTracker from "@/hooks/useAnalyticsEventTracker";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const HomePage = () => {
+  const { trackEvent } = useAnalyticsEventTracker("HomePage");
+
+  const handleProductsClick = () => {
+    trackEvent("Click", "Buy products button clicked");
+  };
+
   return (
     <>
       <h1>Home Page</h1>
       <p>Welcome to the home page!</p>
-      <Button as={Link as any} variant="primary" to="/products">
+      <Button
+        as={Link as any}
+        variant="primary"
+        to="/products"
+        onClick={handleProductsClick}
+      >
         Buy products
       </Button>
     </>
